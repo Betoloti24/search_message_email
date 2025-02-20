@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from pathlib import Path
+
+# Cargar variables de entorno
+API_BASE_URL = os.getenv('API_BASE_URL')
+LOGIN_ENDPOINT = os.getenv('LOGIN_ENDPOINT')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
