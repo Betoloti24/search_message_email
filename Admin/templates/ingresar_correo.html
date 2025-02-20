@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar Correo</title>
+    <!-- Incluir Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #6b73ff 0%, #000dff 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #1e213b;
+            padding: 40px; /* Aumentar el padding para más espacio */
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            color: white;
+            width: 350px; /* Aumentar el ancho del contenedor */
+        }
+        .form-group label {
+            color: white;
+            font-weight: bold;
+        }
+        .form-group input {
+            background-color: #333857;
+            border: 1px solid #4a5577;
+            color: white;
+            border-radius: 5px;
+        }
+        .form-group input:focus {
+            border-color: #6b73ff;
+        }
+        .btn-primary {
+            background-color: #6b73ff;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            font-weight: bold;
+        }
+        .btn-primary:hover {
+            background-color: #5a6095;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Bienvenido</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_correo">Ingresar su Correo</label>
+                <input type="email" class="form-control" id="id_correo" name="correo" required>
+            </div>
+            <button type="submit" class="btn btn-primary mt-4">Registrar</button>
+        </form>
+    </div>
+</body>
+</html>
