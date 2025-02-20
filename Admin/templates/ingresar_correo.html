@@ -17,11 +17,11 @@
         }
         .form-container {
             background-color: #1e213b;
-            padding: 40px; /* Aumentar el padding para más espacio */
+            padding: 40px;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             color: white;
-            width: 350px; /* Aumentar el ancho del contenedor */
+            width: 350px;
         }
         .form-group label {
             color: white;
@@ -51,6 +51,15 @@
             margin-bottom: 20px;
             text-align: center;
         }
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .validation-error {
+            color: red;
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body>
@@ -61,7 +70,13 @@
             <div class="form-group">
                 <label for="id_correo">Ingresar su Correo</label>
                 <input type="email" class="form-control" id="id_correo" name="correo" required>
+                {% if form.correo.errors %}
+                    <div class="error">{{ form.correo.errors|join:", " }}</div>
+                {% endif %}
             </div>
+            {% if error %}
+                <div class="error">{{ error }}</div>
+            {% endif %}
             <button type="submit" class="btn btn-primary mt-4">Registrar</button>
         </form>
     </div>
