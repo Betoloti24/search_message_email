@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes</title>
+    <!-- Incluir Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #6b73ff 0%, #000dff 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            background-color: #1e213b;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 80%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #4a5577;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #333857;
+        }
+        .btn-primary {
+            background-color: #6b73ff;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn-primary:hover {
+            background-color: #5a6095;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Mensajes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Asunto</th>
+                    <th>Fecha</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mensaje in mensajes %}
+                    <tr>
+                        <td>{{ mensaje.subject }}</td>
+                        <td>{{ mensaje.createdAt }}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{{ mensaje.id }}">
+                                Ver Detalle
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- Modal -->
+                    <div style="color: #333857;" class="modal fade" id="modal{{ mensaje.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Activación de Hogar</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="{% static 'img/logo.png' %}" alt="Netflix Logo" style="width: 150px; display: block; margin: 0 auto 20px;">
+                                    <p style="text-align: left;">Estimado usuario {{correo}}.</p>
+                                    <p style="text-align: left;">
+                                        Nos complace informarle que hemos recibido una solicitud para actualizar su configuración de Hogar en Netflix.
+                                        La activación del nuevo hogar le permitirá disfrutar de recomendaciones más precisas y una mejor gestión de los perfiles dentro de su cuenta.
+                                    </p>
+                                    <p style="text-align: left;">
+                                        Si usted no ha solicitado este cambio, por favor ignore este mensaje. Sin embargo, si desea proceder con la actualización,
+                                        haga clic en el botón a continuación para completar el proceso. Agradecemos su atención y le deseamos una excelente experiencia en Netflix.
+                                    </p>
+                                    <a href="{{ mensaje.downloadUrl }}" class="btn btn-danger">Actualizar mi cuenta ahora</a>
+                                    <p><strong>Gracias por ser parte de Netflix.</strong></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Incluir Bootstrap JS y dependencias -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
